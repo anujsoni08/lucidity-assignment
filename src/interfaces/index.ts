@@ -1,4 +1,4 @@
-import { SvgIconProps } from "@mui/material";
+import { SvgIconProps } from "@mui/material/SvgIcon";
 
 export interface InventoryStatListItem {
   label: string;
@@ -21,4 +21,12 @@ export interface Product {
   price: number;
   disabled?: boolean;
   id: string;
+}
+
+export interface InventoryApiData {
+  name: string;
+  category: string;
+  value: string;
+  quantity: number;
+  price: string;
 }

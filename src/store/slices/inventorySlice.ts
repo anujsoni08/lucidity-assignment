@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { Product } from "../../interfaces";
+import { InventoryApiData, Product } from "../../interfaces";
 
 export interface InventorySliceState {
   products: Product[];
@@ -131,7 +131,7 @@ const inventorySlice = createSlice({
       })
       .addCase(
         fetchInventory.fulfilled,
-        (state, action: { payload: Product[] }) => {
+        (state, action: { payload: InventoryApiData[] }) => {
           state.status = "succeeded";
           state.products = action.payload.map((product) => ({
             ...product,

@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Grid from "@mui/material/Grid2";
-import { lightGreen } from "@mui/material/colors";
+import lightGreen from "@mui/material/colors/lightGreen";
 
 import { Product } from "../../interfaces";
 
@@ -33,6 +33,8 @@ const renderEditProductForm = (
       <FormControl>
         <FormLabel htmlFor="category">Category</FormLabel>
         <TextField
+          required
+          aria-label="category"
           id="category"
           name="category"
           value={editedData?.category || ""}
@@ -46,9 +48,12 @@ const renderEditProductForm = (
       <FormControl>
         <FormLabel htmlFor="price">Price</FormLabel>
         <TextField
-          name="price"
+          required
+          aria-label="price"
           type="number"
-          value={editedData?.price || ""}
+          id="price"
+          name="price"
+          value={editedData?.price || 0}
           onChange={handleInputChange}
           fullWidth
         />
@@ -56,11 +61,14 @@ const renderEditProductForm = (
     </Grid>
     <Grid size={6}>
       <FormControl>
-        <FormLabel htmlFor="quantity">Quantity</FormLabel>{" "}
+        <FormLabel htmlFor="quantity">Quantity</FormLabel>
         <TextField
-          name="quantity"
+          required
+          aria-label="quantity"
           type="number"
-          value={editedData?.quantity || ""}
+          id="quantity"
+          name="quantity"
+          value={editedData?.quantity || 0}
           onChange={handleInputChange}
           fullWidth
         />
@@ -70,9 +78,12 @@ const renderEditProductForm = (
       <FormControl>
         <FormLabel htmlFor="value">Value</FormLabel>
         <TextField
+          aria-label="value"
+          type="number"
+          id="value"
           name="value"
           disabled
-          value={editedData?.value || ""}
+          value={editedData?.value || 0}
           onChange={handleInputChange}
           fullWidth
         />
@@ -137,6 +148,7 @@ const EditModal: React.FC<EditModalProps> = ({
           className="cancel-button"
           onClick={onClose}
           sx={{ color: "#a6e22e" }}
+          aria-label="Cancel editing product"
         >
           Cancel
         </Button>
@@ -145,6 +157,7 @@ const EditModal: React.FC<EditModalProps> = ({
           onClick={handleSave}
           variant="contained"
           sx={{ backgroundColor: "#434541", color: "white" }}
+          aria-label="Save edited product"
         >
           Save
         </Button>

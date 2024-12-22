@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "./store";
+import { AppDispatch, RootState } from "./store";
 
 import Header from "./components/Header";
 import InventoryStats from "./components/InventoryStats";
@@ -11,8 +11,8 @@ import { fetchInventory } from "./store/slices/inventorySlice";
 import "./App.css";
 
 function App() {
-  const dispatch = useDispatch();
-  const { products, error, isUserView } = useSelector(
+  const dispatch = useDispatch<AppDispatch>();
+  const { products, isUserView } = useSelector(
     (state: RootState) => state.inventory
   );
 

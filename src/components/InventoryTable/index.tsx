@@ -122,6 +122,7 @@ const InventoryTable: React.FC<InventoryTableProps> = ({
                 <TableCell>${product.value}</TableCell>
                 <TableCell>
                   <IconButton
+                    aria-label={`Edit ${product.id}`}
                     onClick={() =>
                       handleTableAction({
                         actionName: ACTION_TYPE.EDIT,
@@ -139,6 +140,7 @@ const InventoryTable: React.FC<InventoryTableProps> = ({
                     />
                   </IconButton>
                   <IconButton
+                    aria-label={`Disable ${product.id}`}
                     onClick={() =>
                       handleTableAction({
                         actionName: ACTION_TYPE.DISABLE,
@@ -156,6 +158,7 @@ const InventoryTable: React.FC<InventoryTableProps> = ({
                     />
                   </IconButton>
                   <IconButton
+                    aria-label={`Delete ${product.id}`}
                     onClick={() =>
                       handleTableAction({
                         actionName: ACTION_TYPE.DELETE,
@@ -178,7 +181,7 @@ const InventoryTable: React.FC<InventoryTableProps> = ({
           </TableBody>
         </Table>
       </TableContainer>
-      {isModalOpen && (
+      {isModalOpen && selectedProduct && (
         <EditModal
           isOpen={isModalOpen}
           onClose={handleEditModalClose}

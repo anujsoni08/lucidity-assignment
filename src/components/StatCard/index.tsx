@@ -15,7 +15,7 @@ const StatCard: React.FC<StatCardProps> = ({ stat }) => {
     <Card sx={{ width: "100%" }} className="stat-card">
       <StatIconComponent sx={{ color: "white" }} />
       <div>
-        <Typography variant="subtitle1" className="stat-card-label">
+        <Typography variant="h6" className="stat-card-label">
           {label}
         </Typography>
         <Typography variant="h3" className="stat-card-value">
