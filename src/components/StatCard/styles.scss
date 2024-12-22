@@ -1,0 +1,11 @@
+.stat-card {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: #243325;
+
+  .stat-card-label,
+  .stat-card-value {
+    color: white;
+  }
+}
