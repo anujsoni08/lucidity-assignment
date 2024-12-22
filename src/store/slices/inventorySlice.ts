@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { InventoryApiData, Product } from "../../interfaces";
+import { STATUS } from "../../constants";
 
 export interface InventorySliceState {
   products: Product[];
@@ -7,7 +8,7 @@ export interface InventorySliceState {
   totalStoreValue: number;
   outOfStockProducts: number;
   noOfCategory: number;
-  status: "idle" | "loading" | "succeeded" | "failed";
+  status: STATUS.IDLE | STATUS.LOADING | STATUS.SUCCESS | STATUS.FAILED;
   error: string | null;
   isUserView: boolean;
 }
@@ -18,7 +19,7 @@ const initialState: InventorySliceState = {
   totalStoreValue: 0,
   outOfStockProducts: 0,
   noOfCategory: 0,
-  status: "idle",
+  status: STATUS.IDLE,
   error: null,
   isUserView: false,
 };
@@ -126,13 +127,13 @@ const inventorySlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchInventory.pending, (state) => {
-        state.status = "loading";
+        state.status = STATUS.LOADING;
         state.error = null;
       })
       .addCase(
         fetchInventory.fulfilled,
         (state, action: { payload: InventoryApiData[] }) => {
-          state.status = "succeeded";
+          state.status = STATUS.SUCCESS;
           state.products = action.payload.map((product) => ({
             ...product,
             price: parseInt(product.price?.replace("$", "")),
@@ -144,8 +145,8 @@ const inventorySlice = createSlice({
         }
       )
       .addCase(fetchInventory.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message || "An error occurred.";
+        state.status = STATUS.FAILED;
+        state.error = action.error.message || "Failed to fetch inventory data";
       });
   },
 });

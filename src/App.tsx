@@ -9,10 +9,11 @@ import InventoryTable from "./components/InventoryTable";
 import { fetchInventory } from "./store/slices/inventorySlice";
 
 import "./App.css";
+import { STATUS } from "./constants";
 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
-  const { products, isUserView } = useSelector(
+  const { products, status, isUserView } = useSelector(
     (state: RootState) => state.inventory
   );
 
@@ -24,7 +25,9 @@ function App() {
     <>
       <Header isUserView={isUserView} />
       <InventoryStats />
-      <InventoryTable products={products} isUserView={isUserView} />
+      {status === STATUS.SUCCESS && (
+        <InventoryTable products={products} isUserView={isUserView} />
+      )}
     </>
   );
 }
