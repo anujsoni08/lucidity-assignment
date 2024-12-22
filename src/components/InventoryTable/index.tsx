@@ -62,7 +62,15 @@ const InventoryTable: React.FC<InventoryTableProps> = ({
     setEditModalOpen(false);
   };
 
-  const handleTableAction = ({ actionName, action, product }) => {
+  const handleTableAction = ({
+    actionName,
+    action,
+    product,
+  }: {
+    actionName: ACTION_TYPE;
+    action: Function;
+    product: Product;
+  }) => {
     if (isActionDisabled(product, actionName)) {
       return;
     }

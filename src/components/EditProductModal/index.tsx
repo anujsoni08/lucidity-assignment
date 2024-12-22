@@ -24,7 +24,10 @@ interface EditModalProps {
   initialData: Product;
 }
 
-const renderEditProductForm = (editedData, handleInputChange) => (
+const renderEditProductForm = (
+  editedData?: Product,
+  handleInputChange?: React.ChangeEventHandler<HTMLInputElement>
+) => (
   <Grid container spacing={2}>
     <Grid size={6}>
       <FormControl>
@@ -32,7 +35,7 @@ const renderEditProductForm = (editedData, handleInputChange) => (
         <TextField
           id="category"
           name="category"
-          value={editedData.category || ""}
+          value={editedData?.category || ""}
           onChange={handleInputChange}
           fullWidth
           disabled
@@ -45,7 +48,7 @@ const renderEditProductForm = (editedData, handleInputChange) => (
         <TextField
           name="price"
           type="number"
-          value={editedData.price || ""}
+          value={editedData?.price || ""}
           onChange={handleInputChange}
           fullWidth
         />
@@ -57,7 +60,7 @@ const renderEditProductForm = (editedData, handleInputChange) => (
         <TextField
           name="quantity"
           type="number"
-          value={editedData.quantity || ""}
+          value={editedData?.quantity || ""}
           onChange={handleInputChange}
           fullWidth
         />
@@ -69,7 +72,7 @@ const renderEditProductForm = (editedData, handleInputChange) => (
         <TextField
           name="value"
           disabled
-          value={editedData.value || ""}
+          value={editedData?.value || ""}
           onChange={handleInputChange}
           fullWidth
         />

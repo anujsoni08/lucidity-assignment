@@ -20,5 +20,5 @@ export interface Product {
   quantity: number;
   price: number;
   disabled?: boolean;
-  id?: string;
+  id: string;
 }
